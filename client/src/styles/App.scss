@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+// --------------------------------------------------------
+// 👉 Sass Variables
+$font-main: "Inter", sans-serif;
+$font-text: "Inter", sans-serif;
+$color-purple: #7b1fa2;
+$color-white: #ffffff;
+$color-black: #221714;
+$color-yellow: #ffbf35;
+$color-gray: #706866;
+$background-color-gray: #f4f5f6;
+$background-color-beige: #f6f4ee;
+$background-color-white: #fcfcfc;
+$mobile-font-small: 14px;
+$mobile-font-medium: 16px;
+$mobile-font-large: 20px;
+$mobile-font-xlarge: 32px;
+$tablet-font-small: 14px;
+$tablet-font-medium: 16px;
+$tablet-font-large: 20px;
+$tablet-font-xlarge: 32px;
+$desktop-font-small: 14px;
+$desktop-font-medium: 16px;
+$desktop-font-large: 20px;
+$desktop-font-xlarge: 32px;
+
+// --------------------------------------------------------
+// 👉 Responsive Size Setting
+@mixin mobile {
+    @media screen and (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: 767px) and (max-width: 1023px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}
+
+// --------------------------------------------------------
+// 👉 Begin common css styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-text;
+    color: $color-black;
+    list-style: none;
+}
+
+.btn-primary {
+    border: none;
+    border-radius: 5px;
+    background-color: $color-purple;
+    color: $color-white;
+    font-size: $desktop-font-medium;
+    font-weight: 600;
+    padding: 12px 30px;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+        background-color: #481160 !important;
+    }
+}
+
+.btn-secondary {
+    border: none;
+    border-radius: 5px;
+    background-color: $background-color-gray;
+    color: $color-black;
+    font-size: $desktop-font-medium;
+    font-weight: 600;
+    padding: 12px 30px;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+        background-color: #e2e2e2 !important;
+        color: $color-black !important;
+    }
+}
+
+input {
+    border: none;
+    background-color: $background-color-gray;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: $desktop-font-small;
+}
+
+input:focus {
+    outline: none;
+    caret-color: $color-purple;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: $color-black;
+    text-decoration: none;
+}
+// End common css styles : added by Danbi on July 18th, 2023
+
+body {
+    background-color: $background-color-white;
+}
