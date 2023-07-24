@@ -1,5 +1,9 @@
 import User from "../models/User.js";
 import { hashPassword, comparePassword } from "../helpers/auth.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const register = async (req, res) => {
   try {
@@ -32,6 +36,10 @@ export const register = async (req, res) => {
       password: hashedPassword,
     }).save();
 
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
     res.json({
       user: {
         firstName: user.firstName,
@@ -40,6 +48,7 @@ export const register = async (req, res) => {
         role: user.role,
         address: user.address,
       },
+      token,
     });
   } catch (err) {
     console.log(err);
@@ -67,6 +76,10 @@ export const login = async (req, res) => {
       return res.json({ error: "Wrong password" });
     }
 
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
     res.json({
       user: {
         name: user.name,
@@ -74,8 +87,13 @@ export const login = async (req, res) => {
         role: user.role,
         address: user.address,
       },
+      token,
     });
   } catch (err) {
     console.log(err);
   }
+};
+
+export const secret = async (req, res) => {
+  res.json({ currentUser: req.user });
 };
